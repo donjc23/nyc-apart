@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  p
+    h1 Must log in to post your apartment, thanks
+  br
+  br  
+  p
+    a.btn(class="btn-lg", class="btn-primary", href="/auth/facebook", role="button") Login via Facebook
+  p
+    a.btn(class="btn-lg", class="btn-success", href="/auth/twitter", role="button") Login via Twitter
+  p
+    a.btn(class="btn-lg", class="btn-danger", href="/auth/google", role="button") Login via Google

@@ -1,0 +1,62 @@
+
+mixin info(label, type, name, placeholder)
+  div.form-group
+    label= label
+    input.form-control(type=type, name=name, value= placeholder)
+//
+  div.form-group
+    label= 'Owner:'
+    input.form-control(type=text, name=owner, placeholder= "#{aprt.owner}")
+
+extends ../layout
+
+block content
+  
+  h3 Update Apartments #{aprt._someId}
+
+  form(role="form", method="POST", action="/apartments/#{aprt._someId}")
+    input(type="hidden", name="_method", value="PUT")
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'Owner:'
+          input.form-control(type="text", name="owner", value= "#{aprt.owner}")
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'Street:'
+          input.form-control(type="text", name="street", value= "#{aprt.address.street}")
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'Price:'
+          input.form-control(type="text", name="price", value= "#{aprt.price}")
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'City:'
+          input.form-control(type="text", name="city", value= "#{aprt.address.city}")
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'Phone number:'
+          input.form-control(type="text", name="phone", value= "#{aprt.phone}")
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'State:'
+          input.form-control(type="text", name="state", value= "#{aprt.address.state}")
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'Neighborhood:'
+          input.form-control(type="text", name="neighborhood", value= "#{aprt.neighborhood}")
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label= 'Zip code:'
+          input.form-control(type="text", name="zipcode", value= "#{aprt.address.zipcode}")
+    
+    
+    p Description:
+      textarea.form-control(name="description") #{aprt.description} 
+    p
+      button.btn(type="submit", class="btn-primary") Update
+
+  

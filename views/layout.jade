@@ -1,0 +1,54 @@
+doctype 5
+html
+  head
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href='../../stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='../../stylesheets/style.css')
+
+  body
+    .navbar(class="navbar-default", class="navbar-static-top", role="navigation")
+      .container
+        .navbar-header
+          button(type="button", class="navbar-toggle", data-toggle="collapse", data-target=".navbar-collapse")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="/") Apartment-D306
+          
+        .collapse(class="navbar-collapse")
+          ul.nav(class="navbar-nav")
+            // li.active: a(href="#") Post-Apart
+            // li: a(href="/login") Login to post
+            li: a(href="/apartments") Apartments
+            li.dropdown
+              a(href="#", class="dropdown-toggle", data-toggle="dropdown") All in NYC <b class="caret"></b>
+              ul.dropdown-menu
+                li: a(href="/apartments/in/Brooklyn") Brooklyn
+                li: a(href="/apartments/in/Queens") Queens
+                li: a(href="/apartments/in/New York") Manhattan/Chinatown
+                li.divider
+                li.dropdown-header where else
+                li: a(href="/apartments/in/Long Island") Long Island
+                li: a(href="/apartments/in/Staten Island") Staten Island
+          ul.nav(class="navbar-nav", class="navbar-right")
+            if (user != null)
+              li: a.btn(href="/apartments/new", class="btn-default") Account
+              li: a.btn(href="/logout", class="btn-default") Logout
+            else
+              li: a.btn(href="/login", class="btn-default") Login to post  
+
+
+
+
+    .container
+      .jumbotron
+        
+        block content
+
+    
+    
+
+    script(src="https://code.jquery.com/jquery-1.10.2.min.js")
+    script(src='../../javascripts/bootstrap.min.js')

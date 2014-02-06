@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 You are logged in.
+  p.lead Say something worthwhile here.
+  p #{user.name} 
+  p #{user._id} 
+  p #{user.created} 
+  p #{user.email} 
+
+
+  a(href="/logout") Logout n Go home

@@ -1,0 +1,11 @@
+
+extends ../layout
+
+block content
+  
+  h1 All available Apartments
+  br
+  .list-group
+    ul.list-unstyled
+      each aprt in aprts
+        li: a.list-group-item(href="/apartments/#{aprt._someId}") $#{aprt.price} apartment in #{aprt.address.city}. posted on #{aprt.created}.

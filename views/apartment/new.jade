@@ -1,0 +1,71 @@
+
+mixin info(label, type, name, placeholder)
+  div.form-group
+    label= label
+    input.form-control(type=type, name=name, placeholder=placeholder)
+
+
+extends ../layout
+
+block content
+
+  h1 Welcome #{user.name}!
+
+  if aprts.length != 0
+    h3 Your current posts..
+      .list-group
+        ul.list-unstyled
+          each aprt in aprts
+            li.bg-success: a.list-group-item(href="/apartments/#{aprt._someId}") $#{aprt.price} apartment in #{aprt.address.city}
+  else
+    h3 You've no apartment posted. Create post below
+    
+  br
+  // a.btn(href="/logout", class="btn-success", role="button") Logout n Go home
+
+  h3 Fill out Apartment Info.
+  form(role="form", method="POST", action="/apartments/new")
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        mixin info('Owner: ', 'text', 'owner', '')
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        mixin info('Street: ', 'text', 'street', '')
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        mixin info('Price: ', 'text', 'price', '$/month')
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        div.form-group
+          label City:
+          select.form-control(name='city')
+            option Brooklyn
+            option Queens
+            option New York
+            option Staten Island
+            option Long Island
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        mixin info('Phone number: ', 'text', 'phone', '718-123-4567')
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        mixin info('State: ', 'text', 'state', '')
+    .row
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        mixin info('Neighborhood: ', 'text', 'neighborhood', '8av-bay parkway..')
+      .col-xs-12(class="col-sm-6", class="col-md-6")
+        mixin info('Zip code: ', 'text', 'zipcode', '')
+    
+    
+    p Description:
+      textarea.form-control(name="description") say something..
+
+    p
+      button.btn(type="submit", class="btn-primary") Create post
+
+
+
+
+
+
+
+
+
+
