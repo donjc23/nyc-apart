@@ -1,22 +1,31 @@
 // Module dependencies
 var mongoose = require('mongoose')
 	, Apart = require('./models/apartment');
-
+var mongo = require('mongodb');
 
 
 module.exports = {
-
-	connectDB: function(uristring) {
-	    //connecting...
-		mongoose.connect(uristring, function (err, res) {
-			if (err) { 
-		  		console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-		  	} else {
-		  		console.log ('Succeeded connected to: ' + uristring);
-		  	}
-		});
-
+  /*local*/
+	connectDB: function(mongoUri) {
+    mongoose.connect(mongoUri, function (err, res) {
+      if (err) { 
+          console.log ('ERROR connecting to: ' + mongoUri + '. ' + err);
+        } else {
+          console.log ('Succeeded connected to: ' + mongoUri);
+        }
+    });
+  },
+  
+    /*heroku*/
+    connectHDB: function(mongoUri) {
+    mongo.Db.connect(mongoUri, function (err, db) {
+      db.collection('mydocs', function(er, collection) {
+        collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
+        });
+      });
+    });
   	},
+     
 
   	//get all apartments
   	getApartments: function(callback) {

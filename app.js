@@ -58,11 +58,19 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 // heroku db or localhost if we don't find one.  
-var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 
+/*var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 
 	'mongodb://localhost/nyc';
+*/
+var mongoUri = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/nyc';
 //connect db
 //var db = new DB.connectDB(uristring);
-DB.connectDB(uristring);
+if ('development' == app.get('env')){
+  DB.connectDB(mongoUri);
+}else{
+	DB.connectHDB(mongoUri);
+}
 
 //////////////////////////////////////////////
 /** test authentication
