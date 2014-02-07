@@ -26,8 +26,6 @@ module.exports = passport.use(new FacebookStrategy({
 	    if(err) {
 	      console.log(err);
 	    } else {
-	      console.log("saving user ...");
-        console.dir(user);
 	      done(null, user);
 	    };
 	  });
@@ -56,8 +54,6 @@ User.findOne({ oauthID: profile.id }, function(err, user) {
      if(err) {
        console.log(err);
      } else {
-       console.log("saving user ...");
-       console.dir(user);
        done(null, user);
      };
    });
@@ -76,7 +72,7 @@ User.findOne({ oauthID: profile.id }, function(err, user) {
    done(null, user);
  } else {
    var user = new User({
-     oauthID: profile.id,
+     oauthID: profile..emails[0].value,  //not sure google profile.id
      name: profile.displayName,
      email: profile.emails[0].value,
      created: Date.now()
@@ -85,8 +81,8 @@ User.findOne({ oauthID: profile.id }, function(err, user) {
      if(err) {
        console.log(err);
      } else {
-       console.log("saving user ...");
-       console.dir(user);
+      console.log("user.oauthID..." + "   "+user.oauthID);
+      console.log("user.name..." + "   "+user.name);
        done(null, user);
      };
    });
