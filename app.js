@@ -14,7 +14,6 @@ var fs = require('fs');
 var config = require('./oauth.js');
 var User = require('./models/user.js')
 var passport = require('passport');
-//var FacebookStrategy = require('passport-facebook').Strategy;
 var auth = require('./authentication.js'); 
 //-------------------------------------------------
 
